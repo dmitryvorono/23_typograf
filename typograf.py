@@ -2,9 +2,6 @@ import re
 
 
 def typographical_text(text):
-    return replace_substring(text)
-
-def replace_substring(text):
     regexp_for_replace = {' {2,}': ' ',
                           r'\t{2,}': r'\t',
                           '\(c\)': '&copy;',
@@ -79,7 +76,7 @@ def change_hyphen_to_ndash(match):
 
 
 def bind_digit_to_next_word(match):
-    return ''.join([match.group(1), '&nbsp;', match.group(3)])    
+    return ''.join([match.group(1), '&nbsp;', match.group(3)])
 
 
 if __name__ == '__main__':
