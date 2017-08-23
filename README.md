@@ -11,14 +11,14 @@ Now script can this:
 - add hyphen before postfix
 - add hyphen after postfix
 - delete double symbols
-- change hyphen to &mdash;
+- change hyphen to `&mdash;`
 - delete spaces before punctuation
 - add space after punctuation
 - delete spaces before percent
 - add and delete spaces before and after brackets
-- change quotes to &laquo; and &raquo;
+- change quotes to `&laquo;` and `&raquo;`
 - bind small word (1-3 characters) to next word
-- change hyphen to &ndash; in telephone number
+- change hyphen to `&ndash;` in telephone number
 - bind digit to next word
 
 # Requirements
