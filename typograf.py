@@ -28,55 +28,76 @@ def typographical_text(text):
 
 
 def delete_double_words(match):
-    return match.group(1)
+    one_word = 1
+    return match.group(one_word)
 
 
 def add_comma_before_conjuction(match):
-    return ''.join([match.group(1), ',', match.group(2), match.group(3)])
+    word = 1
+    spaces = 2
+    conjuction = 3
+    return ''.join([match.group(word), ',', match.group(spaces), match.group(conjuction)])
 
 
 def add_hyphen_before_postfix(match):
-    return ''.join([match.group(1), '-', match.group(3)])
+    word = 1
+    postfix = 3
+    return ''.join([match.group(word), '-', match.group(postfix)])
 
 
 def add_hyphen_after_postfix(match):
-    return ''.join([match.group(1), '-', match.group(3)])
+    postfix = 1
+    word = 3
+    return ''.join([match.group(postfix), '-', match.group(word)])
 
 
 def delete_double_symbols(match):
-    return match.group(1)
+    one_symbol = 1
+    return match.group(one_symbol)
 
 
 def delete_spaces_before_punctuation(match):
-    return ''.join([match.group(1), match.group(3)])
+    word = 1
+    punctuation = 3
+    return ''.join([match.group(word), match.group(punctuation)])
 
 
 def add_space_after_punctuation(match):
-    return ''.join([match.group(1), ' ', match.group(2)])
+    punctuation = 1
+    word = 2
+    return ''.join([match.group(punctuation), ' ', match.group(word)])
 
 
 def add_space_before_bracket(match):
-    return ''.join([match.group(1), ' ', match.group(2)])
+    word = 1
+    bracket = 2
+    return ''.join([match.group(word), ' ', match.group(bracket)])
 
 
 def change_hyphen_to_mdash(match):
-    return ''.join([match.group(1), '&nbsp;&mdash;&nbsp;'])
+    hyphen = 1
+    return ''.join([match.group(hyphen), '&nbsp;&mdash;&nbsp;'])
 
 
 def bind_small_word_to_next_word(match):
-    return ''.join([match.group(1), '&nbsp;'])
+    small_word = 1
+    return ''.join([match.group(small_word), '&nbsp;'])
 
 
 def change_right_quotes_to_raquo(match):
-    return ''.join([match.group(1), '&raquo;'])
+    word = 1
+    return ''.join([match.group(word), '&raquo;'])
 
 
 def change_hyphen_to_ndash(match):
-    return re.sub('-', '&ndash;', match.group(0))
+    telephone_number = 0
+    return re.sub('-', '&ndash;', match.group(telephone_number))
 
 
 def bind_digit_to_next_word(match):
-    return ''.join([match.group(1), '&nbsp;', match.group(3)])
+    word = 1
+    digit = 3
+    return ''.join([match.group(word), '&nbsp;', match.group(digit)])
 
 
 if __name__ == '__main__':
