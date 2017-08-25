@@ -1,27 +1,29 @@
 import re
+import collections
 
 
 def typographical_text(text):
-    regexp_for_replace = {' {2,}': ' ',
-                          r'\t{2,}': r'\t',
-                          '\(c\)': '&copy;',
-                          r'\b(\w+)(\b[ \t]+\b\1\b)*': delete_double_words,
-                          r'\b(\w+)\b([ \t]+)\b(а|но)\b': add_comma_before_conjuction,
-                          r'\b(\w+)\b([ \t]+)\b(то|либо|нибудь|ка|де|кась|таки)\b': add_hyphen_before_postfix,
-                          r'\b(кое|кой)\b([ \t]+)\b(\w{2,})\b': add_hyphen_after_postfix,
-                          r'(\W)\1': delete_double_symbols,
-                          r'([^\w]+)(-+)[ \t]+': change_hyphen_to_mdash,
-                          r'\b(\w+)\b([ \t]+)([.,:\!\?]+)': delete_spaces_before_punctuation,
-                          r'([.,:\!\?]+)(\w+)': add_space_after_punctuation,
-                          r'[ \t]+%': '%',
-                          r'\([ \t]+': '(',
-                          r'[ \t]+\)': ')',
-                          r'\b(\w+)\b(\()': add_space_before_bracket,
-                          r'[ \t]("|\')': ' &laquo;',
-                          r'(\w+)("|\')': change_right_quotes_to_raquo,
-                          r'\b(\w{1,3})\b([ \t]+)': bind_small_word_to_next_word,
-                          r'[\d\+]{1,}[\d\-]{3,15}': change_hyphen_to_ndash,
-                          r'([\d]+)([ \t])(\w+)': bind_digit_to_next_word}
+    regexp_for_replace = collections.OrderedDict()
+    regexp_for_replace[' {2,}'] = ' '
+    regexp_for_replace[r'\t{2,}'] = r'\t'
+    regexp_for_replace['\(c\)'] = '&copy;'
+    regexp_for_replace[r'\b(\w+)(\b[ \t]+\b\1\b)*'] = delete_double_words
+    regexp_for_replace[r'\b(\w+)\b([ \t]+)\b(а|но)\b'] = add_comma_before_conjuction
+    regexp_for_replace[r'\b(\w+)\b([ \t]+)\b(то|либо|нибудь|ка|де|кась|таки)\b'] = add_hyphen_before_postfix
+    regexp_for_replace[r'\b(кое|кой)\b([ \t]+)\b(\w{2,})\b'] = add_hyphen_after_postfix
+    regexp_for_replace[r'(\W)\1'] = delete_double_symbols
+    regexp_for_replace[r'([^\w]+)(-+)[ \t]+'] = change_hyphen_to_mdash
+    regexp_for_replace[r'\b(\w+)\b([ \t]+)([.,:\!\?]+)'] = delete_spaces_before_punctuation
+    regexp_for_replace[r'([.,:\!\?]+)(\w+)'] = add_space_after_punctuation
+    regexp_for_replace[r'[ \t]+%'] = '%'
+    regexp_for_replace[r'\([ \t]+'] = '('
+    regexp_for_replace[r'[ \t]+\)'] = ')'
+    regexp_for_replace[r'\b(\w+)\b(\()'] = add_space_before_bracket
+    regexp_for_replace[r'[ \t]("|\')'] = ' &laquo;'
+    regexp_for_replace[r'(\w+)("|\')'] = change_right_quotes_to_raquo
+    regexp_for_replace[r'\b(\w{1,3})\b([ \t]+)'] = bind_small_word_to_next_word
+    regexp_for_replace[r'[\d\+]{1,}[\d\-]{3,15}'] = change_hyphen_to_ndash
+    regexp_for_replace[r'([\d]+)([ \t])(\w+)'] = bind_digit_to_next_word
     for pattern, repl in regexp_for_replace.items():
         text = re.sub(pattern, repl, text)
     return text
